@@ -32,7 +32,7 @@ import { signupSchema } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Checkbox } from "@/components/ui/checkbox";
-import { provider } from "../layout";
+import { provider } from "@/components/AuthContext";
 
 const SignUp = () => {
   const form = useForm<z.infer<typeof signupSchema>>({

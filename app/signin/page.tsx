@@ -29,7 +29,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { z } from "zod";
-import { provider } from "../layout";
+import { provider } from "@/components/AuthContext";
 import { toast } from "sonner";
 const SignIn = () => {
   const form = useForm<z.infer<typeof loginSchema>>({
