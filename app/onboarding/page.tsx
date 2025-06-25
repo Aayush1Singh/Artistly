@@ -368,9 +368,14 @@ function Home() {
 
   const handleSubmit = async (data: FormValues) => {
     toast("Form Submitted. See console.log()");
-    await axios.post("/submitonboard", {
-      data,
-    });
+    try {
+      await axios.post("/api/submitonboard", {
+        data,
+      });
+    } catch (err) {
+      console.log();
+    }
+
     console.log(data);
   };
 
