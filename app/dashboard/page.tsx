@@ -124,7 +124,7 @@ const ManagerDashboard = () => {
     },
   ];
 
-  const getStatusBadge = (status) => {
+  const getStatusBadge = (status: string) => {
     switch (status) {
       case "approved":
         return (
@@ -149,7 +149,7 @@ const ManagerDashboard = () => {
     }
   };
 
-  const handleAction = (id, action) => {
+  const handleAction = (id: unknown, action: string) => {
     console.log(`${action} artist with ID: ${id}`);
     // Here you would typically update the status in your database
   };

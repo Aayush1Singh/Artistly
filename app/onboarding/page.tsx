@@ -60,17 +60,31 @@ const feeRanges = [
   "$2500-5000",
   "$5000+",
 ];
+const schema = z.object({
+  basic: z.object({
+    fullName: z.string(),
+    bio: z.string(),
+    categories: z.string().array(),
+  }),
+  feeSkill: z.object({
+    fee: z.string(),
+    languages: z.string().array(),
+  }),
+  location: z.object({
+    location: z.string(),
+  }),
+});
 interface MultiStepFormProps {
   /** The schema to validate the form */
-  schema: ZodObject<any>;
+  schema: typeof schema; // ✅ Now correctly refers to the actual schema type;
   /* The useForm hook return object */
-  methods: UseFormReturn<any>;
+  methods: UseFormReturn<FormValues>;
   /* The steps of the form, where the name of the step matches the one in the schema */
   steps: { name: string; children: ReactNode }[];
   /* The controls for moving forward and backwards */
   controls?: ReactNode;
   /* The function to call when the form is submitted */
-  onSubmit: (data: any) => void;
+  onSubmit: (data: FormValues) => void;
   currentStep: number;
   setCurrentStep: (state: number) => void;
 }
@@ -132,21 +146,6 @@ const MultiStepForm = forwardRef<MultiStepFormRef, MultiStepFormProps>(
     );
   }
 );
-
-const schema = z.object({
-  basic: z.object({
-    fullName: z.string(),
-    bio: z.string(),
-    categories: z.string().array(),
-  }),
-  feeSkill: z.object({
-    fee: z.string(),
-    languages: z.string().array(),
-  }),
-  location: z.object({
-    location: z.string(),
-  }),
-});
 
 type FormValues = z.infer<typeof schema>;
 export function Home() {

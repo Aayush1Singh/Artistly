@@ -1,5 +1,5 @@
 "use client";
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { createContext } from "react";
@@ -22,15 +22,18 @@ const geistMono = Geist_Mono({
 // };
 interface userData {
   isLoggedIn?: boolean;
-  setLoggedIn?: (state: boolean) => void;
+  setLoggedIn: (state: boolean) => void;
 }
-export const provider = createContext<userData>({});
+export const provider = createContext<userData>({
+  isLoggedIn: false,
+  setLoggedIn: () => {},
+});
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
   return (
     <html lang="en">
       <provider.Provider value={{ isLoggedIn, setLoggedIn }}>
