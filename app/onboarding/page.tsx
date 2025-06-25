@@ -148,7 +148,7 @@ const MultiStepForm = forwardRef<MultiStepFormRef, MultiStepFormProps>(
 );
 
 type FormValues = z.infer<typeof schema>;
-export function Home() {
+function Home() {
   const [currentStep, setCurrentStep] = useState(0);
 
   const methods = useForm<FormValues>({
